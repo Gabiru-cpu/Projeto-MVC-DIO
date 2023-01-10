@@ -1,0 +1,62 @@
+@model IEnumerable<ProjetoMVC.Models.Contato>
+
+@{
+    ViewData["Title"] = "Listagem de contatos";
+}
+
+<h1>Contatos:</h1>
+
+<p> <a asp-action="Criar" class="btn btn-warning" >Novo Contato</a> </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th>
+                Opções
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Id)
+                    @* @Html.DisplayFor(modelItem => item.Id) *@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Nome)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Telefone)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => item.Ativo)
+                </td>
+
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                    <a asp-action="Detalhes" asp-route-id="@item.Id" class="btn btn-info" style="color: #ffff;">Detalhes</a> |
+                    <a asp-action="Deletar" asp-route-id="@item.Id" class="btn btn-danger">Deletar</a>
+                </td>
+            </tr>
+        }
+</table>
